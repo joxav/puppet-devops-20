@@ -12,7 +12,7 @@ daemon <%= @daemon %>;
 <% if @super_user -%>
 user <%= @daemon_user %><% if @daemon_group -%> <%= @daemon_group %><% end -%>;
 <% end -%>
-worker_processes <%= @worker_processes %>;
+worker_processes <%= @worker_processes || 2 %>;
 <% if @worker_rlimit_nofile -%>
 worker_rlimit_nofile <%= @worker_rlimit_nofile %>;
 <% end -%>
@@ -35,7 +35,7 @@ events {
   <%- if @accept_mutex_delay -%>
   accept_mutex_delay <%= @accept_mutex_delay %>;
   <%- end -%>
-  worker_connections <%= @worker_connections -%>;
+  worker_connections <%= @worker_connections || 1024 -%>;
   <%- if @multi_accept == 'on' -%>
     multi_accept on;
   <%- end -%>
