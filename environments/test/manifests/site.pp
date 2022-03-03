@@ -1,6 +1,9 @@
 node "test-site" {
 
-  file { ['/var/www']:
+  class directory_tree {
+  
+    # create a directory tree
+  file { ['/var/www/','/var/www/test-app/','/var/www/test-app/current/','/var/www/test-app/current/index.html',''/var/www/test-app/releases','/var/www/test-app/shared']:
     ensure => 'directory',
     owner   => root,
     group   => root,
