@@ -1,0 +1,7 @@
+server {
+    listen               443 ssl;
+    ssl_certificate      /etc/nginx/ssl/example.com.crt;
+    server_name testapi.example.com;
+    location / {
+    }
+}
