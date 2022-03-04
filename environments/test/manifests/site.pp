@@ -19,7 +19,7 @@ node "test-site" {
   }
 
   class { 'nginx':
-    client_max_body_size => '512M',
+    client_max_body_size => '1024M',
   }
 
   # NGINX Configuration
@@ -59,10 +59,11 @@ node "test-site" {
     www_root             => "/var/www/test-app/current/",
   }
 
-  nginx::resource::location {"/":
+  nginx::resource::location {"~* ^.+\.(jpg|jpeg|gif)":
     server                => "$server_name",
     ensure                => present,
-    www_root             => "/var/www/test-app/current/",
+    index_files           => ['index.html','index.htm','index.php'],
+    www_root              => "/var/www/test-app/current/",
     priority              => 401,
   }
 
